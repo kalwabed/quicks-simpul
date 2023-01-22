@@ -31,9 +31,9 @@ export default function App() {
               leave="transition ease-in-out duration-100 transform"
               leaveFrom="-translate-x-0 opacity-100"
               leaveTo="translate-x-full opacity-0"
-              className="relative flex flex-col"
+              className={clsxm('relative flex flex-col', isShowInbox ? 'z-30' : 'z-10')}
             >
-              <Popover className="relative">
+              <Popover className={clsxm('relative', isShowInbox ? 'mr-6 translate-x-full transform' : '')}>
                 {({ open }) => {
                   if (open) {
                     setIsShowTask(true)
@@ -54,8 +54,7 @@ export default function App() {
                       <Popover.Button
                         className={clsxm(
                           'rounded-full bg-[#F2F2F2] p-4 transition duration-300 hover:bg-gray-300',
-                          isShowTask ? 'translate-x-full transform bg-[#F8B76B] text-white' : '',
-                          isShowInbox ? 'mr-6 translate-x-full' : ''
+                          isShowTask ? 'translate-x-full transform bg-[#F8B76B] text-white' : ''
                         )}
                       >
                         <TaskIcon className="h-8 w-8" fill={isShowTask ? '#fff' : '#F8B76B'} />
@@ -87,9 +86,9 @@ export default function App() {
               leave="transition ease-in-out duration-300 transform"
               leaveFrom="-translate-x-0 opacity-100"
               leaveTo="translate-x-full opacity-0"
-              className="relative flex flex-col"
+              className={clsxm('relative flex flex-col', isShowTask ? 'z-30' : 'z-10')}
             >
-              <Popover className="relative z-20">
+              <Popover className={clsxm('relative', isShowTask ? 'mr-6 translate-x-full transform' : '')}>
                 {({ open }) => {
                   if (open) {
                     setIsShowInbox(true)
@@ -110,8 +109,7 @@ export default function App() {
                       <Popover.Button
                         className={clsxm(
                           'rounded-full bg-[#F2F2F2] p-4 transition duration-300 hover:bg-gray-300',
-                          isShowInbox ? 'translate-x-full transform bg-[#8785FF] text-white' : '',
-                          isShowTask ? 'mr-6 translate-x-full' : ''
+                          isShowInbox ? 'translate-x-full transform bg-[#8785FF] text-white' : ''
                         )}
                       >
                         <MessagingIcon className="h-8 w-8 text-blue-500" fill={isShowInbox ? '#fff' : '#8885FF'} />
