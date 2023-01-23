@@ -6,6 +6,7 @@ import LightningIcon from './assets/lightning.svg'
 import MessagingIcon from './assets/messaging.svg'
 import TaskIcon from './assets/todo.svg'
 import clsxm from './utils/clsxm'
+import ChatList from './components/chat-list'
 
 export default function App() {
   const [isShowingMenu, setIsShowingMenu] = useState<boolean>(false)
@@ -67,7 +68,7 @@ export default function App() {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                       >
-                        <Popover.Panel className="absolute bottom-24 -right-24 z-20 min-w-[734px] rounded-lg bg-white p-5 shadow-md">
+                        <Popover.Panel className="absolute -right-16 bottom-24 z-20 min-w-[734px] rounded-lg bg-white p-5 shadow-md">
                           <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium, excepturi voluptates
                             ea quisquam rerum quas!
@@ -123,11 +124,8 @@ export default function App() {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                       >
-                        <Popover.Panel className="absolute bottom-24 -right-24 z-20 min-w-[734px] rounded-lg bg-white p-5 shadow-md">
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium, excepturi voluptates
-                            ea quisquam rerum quas!
-                          </p>
+                        <Popover.Panel className="absolute -right-16 bottom-24 z-20 min-w-[734px] rounded-lg bg-white p-5 shadow-md">
+                          <ChatList />
                         </Popover.Panel>
                       </Transition>
                     </>
