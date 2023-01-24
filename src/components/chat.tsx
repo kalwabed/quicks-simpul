@@ -1,12 +1,18 @@
+import { useSetAtom } from 'jotai'
 import Avvvatars from 'avvvatars-react'
 
 import { Chat as ChatType } from './chat-list'
+import { chatAtom } from '../store/chat-state'
 
 const Chat = (props: ChatType) => {
-  const { createdAt, isGroup, lastMessage, name } = props
+  const { createdAt, id, isGroup, lastMessage, name } = props
+  const setChatState = useSetAtom(chatAtom)
 
   return (
-    <button className="flex flex-col rounded-t border-b border-[#828282] px-2 pb-8 pt-4 outline-none transition duration-300 hover:bg-gray-100 focus:bg-gray-200">
+    <button
+      className="flex flex-col rounded-t border-b border-[#828282] px-2 pb-8 pt-4 outline-none transition duration-300 hover:bg-gray-100 focus:bg-gray-200"
+      onClick={() => setChatState(id)}
+    >
       <div className="flex">
         {isGroup ? (
           <div className="relative flex">

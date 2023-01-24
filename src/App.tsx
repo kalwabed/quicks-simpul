@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 
 import Container from './components/container'
@@ -7,11 +6,13 @@ import MessagingIcon from './assets/messaging.svg'
 import TaskIcon from './assets/todo.svg'
 import clsxm from './utils/clsxm'
 import ChatList from './components/chat-list'
+import { useAtom } from 'jotai'
+import { isShowInboxState, isShowMenuState, isShowTaskState } from './store/popover-state'
 
 export default function App() {
-  const [isShowingMenu, setIsShowingMenu] = useState<boolean>(false)
-  const [isShowInbox, setIsShowInbox] = useState<boolean>(false)
-  const [isShowTask, setIsShowTask] = useState<boolean>(false)
+  const [isShowingMenu, setIsShowingMenu] = useAtom(isShowMenuState)
+  const [isShowInbox, setIsShowInbox] = useAtom(isShowInboxState)
+  const [isShowTask, setIsShowTask] = useAtom(isShowTaskState)
 
   return (
     <Container>
@@ -124,7 +125,7 @@ export default function App() {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                       >
-                        <Popover.Panel className="absolute -right-16 bottom-24 z-20 min-w-[734px] rounded-lg bg-white p-5 shadow-md">
+                        <Popover.Panel className="absolute -right-16 bottom-24 z-20 min-w-[734px] overflow-hidden rounded bg-white shadow-md">
                           <ChatList />
                         </Popover.Panel>
                       </Transition>
@@ -138,7 +139,7 @@ export default function App() {
           <button
             className={clsxm(
               'rounded-full bg-[#2F80ED] p-4 transition duration-300 focus:bg-blue-600',
-              isShowInbox || isShowTask ? '-translate-x-9 transform bg-[#4F4F4F]' : ''
+              isShowingMenu && (isShowInbox || isShowTask) ? '-translate-x-9 transform bg-[#4F4F4F]' : ''
             )}
             onClick={() => setIsShowingMenu(prev => !prev)}
           >

@@ -9,6 +9,8 @@ specifiers:
   autoprefixer: ^10.4.13
   avvvatars-react: ^0.4.2
   clsx: ^1.2.1
+  jotai: ^1.13.1
+  jotai-location: ^0.3.3
   postcss: ^8.4.21
   prettier: ^2.8.3
   prettier-plugin-tailwindcss: ^0.2.1
@@ -25,6 +27,8 @@ dependencies:
   '@headlessui/tailwindcss': 0.1.2_tailwindcss@3.2.4
   avvvatars-react: 0.4.2_biqbaboplfbrettd7655fr4n2y
   clsx: 1.2.1
+  jotai: 1.13.1_react@18.2.0
+  jotai-location: 0.3.3_jotai@1.13.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tailwind-merge: 1.8.1
@@ -1148,6 +1152,57 @@ packages:
   /is-number/7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
+
+  /jotai-location/0.3.3_jotai@1.13.1:
+    resolution: {integrity: sha512-UsPoX/wZbdVMARDj5bNTUEiTcRl07tlLtnCAO2DgplpMeD7ZqFRgRe6OynR3ByaQUAPhBKNoKtLvGpE0mIJl3g==}
+    peerDependencies:
+      jotai: '*'
+    dependencies:
+      jotai: 1.13.1_react@18.2.0
+    dev: false
+
+  /jotai/1.13.1_react@18.2.0:
+    resolution: {integrity: sha512-RUmH1S4vLsG3V6fbGlKzGJnLrDcC/HNb5gH2AeA9DzuJknoVxSGvvg8OBB7lke+gDc4oXmdVsaKn/xDUhWZ0vw==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      '@babel/template': '*'
+      jotai-devtools: '*'
+      jotai-immer: '*'
+      jotai-optics: '*'
+      jotai-redux: '*'
+      jotai-tanstack-query: '*'
+      jotai-urql: '*'
+      jotai-valtio: '*'
+      jotai-xstate: '*'
+      jotai-zustand: '*'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      jotai-devtools:
+        optional: true
+      jotai-immer:
+        optional: true
+      jotai-optics:
+        optional: true
+      jotai-redux:
+        optional: true
+      jotai-tanstack-query:
+        optional: true
+      jotai-urql:
+        optional: true
+      jotai-valtio:
+        optional: true
+      jotai-xstate:
+        optional: true
+      jotai-zustand:
+        optional: true
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
