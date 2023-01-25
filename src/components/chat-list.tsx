@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai'
+
 import SearchIcon from '../assets/search.svg'
 import { chatAtom } from '../store/chat-state'
 import Chat from './chat'

@@ -1,3 +1,4 @@
+import './scrollbar.css'
 import { useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
 
@@ -5,6 +6,7 @@ import ArrowBack from '../assets/arrow-back.svg'
 import Close from '../assets/close.svg'
 import { chatAtom } from '../store/chat-state'
 import { isShowInboxState, isShowMenuState } from '../store/popover-state'
+import ChatMessage from './chat-message'
 
 const ChatDetail = () => {
   const resetChatState = useResetAtom(chatAtom)
@@ -40,39 +42,33 @@ const ChatDetail = () => {
         </div>
       </div>
 
-      <div className="flex max-h-[737px] flex-col overflow-y-auto px-5 py-4">
-        <span className="text-2xl font-bold text-gray-800">start</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">Select a chat to start messaging</span>
-        <span className="text-2xl font-bold text-gray-800">end</span>
+      <div className="custom_scroll flex max-h-[737px] w-full flex-col gap-4 overflow-y-auto px-5 py-4">
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
+        <ChatMessage
+          sender="Yusuf"
+          colorScheme="yellow"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
       </div>
     </>
   )

@@ -11,12 +11,14 @@
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@headlessui/tailwindcss": "^0.1.2",
+    "@popperjs/core": "^2.11.6",
     "avvvatars-react": "^0.4.2",
     "clsx": "^1.2.1",
     "jotai": "^1.13.1",
     "jotai-location": "^0.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-popper": "^2.3.0",
     "tailwind-merge": "^1.8.1",
     "vite-plugin-svgr": "^2.4.0"
   },
