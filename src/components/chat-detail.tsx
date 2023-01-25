@@ -1,7 +1,7 @@
 import './scrollbar.css'
 import { useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
-import { useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useScroll } from 'react-use'
 
 import ArrowBack from '../assets/arrow-back.svg'
@@ -19,6 +19,20 @@ const ChatDetail = () => {
   const setIsShowInbox = useSetAtom(isShowInboxState)
   const scrollRef = useRef<HTMLDivElement>(null)
   const { y } = useScroll(scrollRef)
+
+  const scrollToBottom = (): void => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  // make user scroll to bottom when user is first time open chat detail before page is loaded
+  useEffect(() => {
+    scrollToBottom()
+  }, [])
 
   return (
     <>
@@ -50,6 +64,17 @@ const ChatDetail = () => {
       </div>
 
       <div className="custom_scroll flex max-h-[737px] w-full flex-col gap-4 overflow-y-auto px-5 py-4" ref={scrollRef}>
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
+
+        <ChatMessage
+          colorScheme="purple"
+          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
+          createdAt={new Date()}
+        />
         <ChatMessage
           colorScheme="purple"
           content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
@@ -91,9 +116,7 @@ const ChatDetail = () => {
           leaveTo="transform translate-y-4 opacity-0"
           className="absolute bottom-20 rounded-lg bg-blue-100 py-2 px-3 text-blue-700 shadow-md outline-none"
           as="button"
-          onClick={() => {
-            scrollRef.current?.scrollTo({ top: y + 500, behavior: 'smooth' })
-          }}
+          onClick={scrollToBottom}
         >
           New message
         </Transition>
