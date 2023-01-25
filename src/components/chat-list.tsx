@@ -56,7 +56,7 @@ const ChatList = () => {
           </div>
 
           <div className="mt-6 flex min-h-[737px] flex-1 flex-col overflow-y-auto p-5 pt-0">
-            {dummyData.map((v, i) => (
+            {dummyData.map(v => (
               <Chat key={v.id} {...v} />
             ))}
           </div>
