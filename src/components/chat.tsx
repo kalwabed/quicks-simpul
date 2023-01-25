@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai'
 import Avvvatars from 'avvvatars-react'
 
-import { Chat as ChatType } from './chat-list'
+import { Chat as ChatType } from '../utils/types'
 import { chatAtom } from '../store/chat-state'
 
 const Chat = (props: ChatType) => {

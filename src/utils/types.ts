@@ -27,3 +27,14 @@ export interface Company {
   catchPhrase: string
   bs: string
 }
+
+export interface Chat {
+  id: string
+  name: string
+  lastMessage: {
+    content: string
+    sender?: string
+  }
+  createdAt: Date
+  isGroup: boolean
+}

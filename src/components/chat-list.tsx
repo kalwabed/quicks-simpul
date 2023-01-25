@@ -11,17 +11,6 @@ import Chat from './chat'
 import ChatDetail from './chat-detail'
 import clsxm from '../utils/clsxm'
 
-export interface Chat {
-  id: string
-  name: string
-  lastMessage: {
-    content: string
-    sender?: string
-  }
-  createdAt: Date
-  isGroup: boolean
-}
-
 const ChatList = () => {
   const chatState = useAtomValue(chatAtom)
   const { data: usersData, isLoading } = useSWR<User[]>('/users', async () => {

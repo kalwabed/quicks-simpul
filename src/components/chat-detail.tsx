@@ -1,7 +1,7 @@
 import './scrollbar.css'
 import { useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useScroll } from 'react-use'
 
 import ArrowBack from '../assets/arrow-back.svg'
