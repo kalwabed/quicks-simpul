@@ -42,7 +42,7 @@ const ChatList = () => {
   const chatState = useAtomValue(chatAtom)
 
   return (
-    <div className="flex max-h-[737px] w-full flex-1 flex-col">
+    <div className="relative flex max-h-[737px] w-full flex-1 flex-col">
       {chatState ? (
         <ChatDetail />
       ) : (

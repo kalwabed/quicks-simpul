@@ -70,6 +70,17 @@ const ChatDetail = () => {
           createdAt={new Date()}
         />
       </div>
+
+      <div className="inline-flex w-full items-center gap-4 px-5 py-4">
+        <input
+          type="text"
+          className="w-full rounded-lg border px-4 py-2.5 outline-none transition hover:border-gray-300 focus:border-gray-400"
+          placeholder="Type a new message"
+        />
+        <button className="appearance-none rounded-lg bg-blue-500 py-2 px-5 font-bold text-white outline-none transition hover:bg-blue-600 focus:bg-blue-700">
+          Send
+        </button>
+      </div>
     </>
   )
 }
