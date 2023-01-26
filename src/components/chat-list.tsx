@@ -11,7 +11,6 @@ import { User } from '../utils/types'
 import Chat from './chat'
 import ChatDetail from './chat-detail'
 import clsxm from '../utils/clsxm'
-import { isGroup } from '../utils/chats'
 import ChatCs from './chat-cs'
 
 const ChatList = () => {
@@ -46,7 +45,7 @@ const ChatList = () => {
           <div className="relative p-5 pb-0">
             <input
               placeholder="Search"
-              className="inline-flex w-full rounded border-2 border-[#828282] px-2.5 py-0.5 outline-none transition duration-300 ease-in-out focus:border-transparent focus:ring"
+              className="inline-flex w-full rounded border-2 border-gray-300 px-2.5 py-0.5 outline-none transition duration-300 ease-in-out focus:border-transparent focus:ring"
             />
             <SearchIcon className="absolute top-[30px] right-7" />
           </div>

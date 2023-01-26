@@ -1,22 +1,15 @@
 import './scrollbar.css'
-import { useAtomValue, useSetAtom } from 'jotai'
+import { useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
-import { useEffect, useMemo, useRef } from 'react'
-import { useScroll } from 'react-use'
-import useSWR from 'swr'
+import { useMemo } from 'react'
 import { faker } from '@faker-js/faker'
-import { Transition } from '@headlessui/react'
 
 import ArrowBack from '../assets/arrow-back.svg'
 import Close from '../assets/close.svg'
 import { chatAtom } from '../store/chat-state'
 import { isShowInboxState, isShowMenuState } from '../store/popover-state'
 import ChatMessage, { ChatMessageProps } from './chat-message'
-import DateDivider from './date-divider'
-import NewMessageDivider from './new-message-divider'
-import { User } from '../utils/types'
 import clsxm from '../utils/clsxm'
-import { groupName } from '../utils/chats'
 
 const ChatCs = () => {
   const resetChatState = useResetAtom(chatAtom)
