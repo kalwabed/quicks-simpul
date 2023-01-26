@@ -1,7 +1,7 @@
 .ring_loading {
-  --uib-size: 40px;
+  --uib-size: 30px;
   --uib-speed: 2s;
-  --uib-color: black;
+  --uib-color: blue;
 
   height: var(--uib-size);
   width: var(--uib-size);

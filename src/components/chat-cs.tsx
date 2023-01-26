@@ -1,8 +1,10 @@
 import './scrollbar.css'
+import './loading.css'
 import { useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { faker } from '@faker-js/faker'
+import { Transition } from '@headlessui/react'
 
 import ArrowBack from '../assets/arrow-back.svg'
 import Close from '../assets/close.svg'
@@ -15,6 +17,7 @@ const ChatCs = () => {
   const resetChatState = useResetAtom(chatAtom)
   const setIsShowMenu = useSetAtom(isShowMenuState)
   const setIsShowInbox = useSetAtom(isShowInboxState)
+  const [isLoading, setIsLoading] = useState(false)
 
   const chats = useMemo<ChatMessageProps[]>(() => {
     return [
@@ -30,6 +33,12 @@ const ChatCs = () => {
         createdAt: new Date(faker.datatype.datetime()),
       },
     ]
+  }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true)
+    }, 500)
   }, [])
 
   return (
@@ -66,14 +75,33 @@ const ChatCs = () => {
         ))}
       </div>
 
-      <div className="relative flex w-full flex-col items-center">
-        <div className="inline-flex w-full items-center gap-4 px-5 py-4">
+      <div className="relative flex w-full flex-col items-center px-5">
+        <Transition
+          show={isLoading}
+          enter="transition duration-200 ease-out"
+          enterFrom="transform translate-y-8 opacity-0"
+          enterTo="transform translate-y-0 opacity-100"
+          leave="transition duration-200 ease-out"
+          leaveFrom="transform translate-y-0 opacity-100"
+          leaveTo="transform translate-y-8 opacity-0"
+          className="inline-flex w-full items-center gap-4 rounded-md bg-blue-100 p-4 text-sm font-medium text-gray-700"
+        >
+          <svg className="ring_loading" viewBox="25 25 50 50" stroke-width="5">
+            <circle cx="50" cy="50" r="20" />
+          </svg>
+          <p>Please wait while we connect you with one of our team...</p>
+        </Transition>
+        <div className="inline-flex w-full items-center gap-4 py-4">
           <input
+            disabled={isLoading}
             type="text"
-            className="w-full rounded-lg border px-4 py-2.5 outline-none transition hover:border-gray-300 focus:border-gray-400"
+            className="w-full rounded-lg border px-4 py-2.5 outline-none transition hover:border-gray-300 focus:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Type a new message"
           />
-          <button className="appearance-none rounded-lg bg-blue-500 py-2 px-5 font-bold text-white outline-none transition hover:bg-blue-600 focus-visible:bg-blue-700">
+          <button
+            disabled={isLoading}
+            className="appearance-none rounded-lg bg-blue-500 py-2 px-5 font-bold text-white outline-none transition hover:bg-blue-600 focus-visible:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
             Send
           </button>
         </div>
