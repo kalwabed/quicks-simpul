@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@faker-js/faker': ^7.6.0
   '@headlessui/react': ^1.7.7
   '@headlessui/tailwindcss': ^0.1.2
   '@popperjs/core': ^2.11.6
@@ -27,6 +28,7 @@ specifiers:
   vite-plugin-svgr: ^2.4.0
 
 dependencies:
+  '@faker-js/faker': 7.6.0
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@headlessui/tailwindcss': 0.1.2_tailwindcss@3.2.4
   '@popperjs/core': 2.11.6
@@ -440,6 +442,11 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: false
 
   /@headlessui/react/1.7.7_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==}

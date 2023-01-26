@@ -3,6 +3,7 @@ import './loading.css'
 import { useAtomValue } from 'jotai'
 import { useMemo } from 'react'
 import useSWR from 'swr'
+import { faker } from '@faker-js/faker'
 
 import SearchIcon from '../assets/search.svg'
 import { chatAtom } from '../store/chat-state'
@@ -10,6 +11,7 @@ import { User } from '../utils/types'
 import Chat from './chat'
 import ChatDetail from './chat-detail'
 import clsxm from '../utils/clsxm'
+import { isGroup } from '../utils/chats'
 
 const ChatList = () => {
   const chatState = useAtomValue(chatAtom)
@@ -22,13 +24,13 @@ const ChatList = () => {
     // simulate chat data from users data where every unique number is change isGroup to true
     return usersData?.map(v => ({
       id: v.id.toString(),
-      name: v.name,
+      name: `${v.address.suite}-${v.address.street}`,
       lastMessage: {
-        content: 'Hello',
+        content: faker.random.words(5),
         sender: v.username,
       },
-      createdAt: new Date(),
-      isGroup: v.id % 2 === 0,
+      createdAt: faker.date.between('2022-01-01', '2023-01-31'),
+      isGroup: isGroup(v.id),
     }))
   }, [usersData])
 

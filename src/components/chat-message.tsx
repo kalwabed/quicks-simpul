@@ -5,7 +5,7 @@ import clsxm from '../utils/clsxm'
 
 type ColorScheme = 'purple' | 'yellow' | 'green'
 
-interface ChatMessageProps {
+export interface ChatMessageProps {
   content: string
   sender?: string
   createdAt: Date

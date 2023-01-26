@@ -1,24 +1,34 @@
 import './scrollbar.css'
-import { useSetAtom } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useResetAtom } from 'jotai/utils'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useScroll } from 'react-use'
+import useSWR from 'swr'
+import { faker } from '@faker-js/faker'
+import { Transition } from '@headlessui/react'
 
 import ArrowBack from '../assets/arrow-back.svg'
 import Close from '../assets/close.svg'
 import { chatAtom } from '../store/chat-state'
 import { isShowInboxState, isShowMenuState } from '../store/popover-state'
-import ChatMessage from './chat-message'
+import ChatMessage, { ChatMessageProps } from './chat-message'
 import DateDivider from './date-divider'
 import NewMessageDivider from './new-message-divider'
-import { Transition } from '@headlessui/react'
+import { User } from '../utils/types'
+import clsxm from '../utils/clsxm'
+import { groupName } from '../utils/chats'
 
 const ChatDetail = () => {
   const resetChatState = useResetAtom(chatAtom)
+  const chatState = useAtomValue(chatAtom)
   const setIsShowMenu = useSetAtom(isShowMenuState)
   const setIsShowInbox = useSetAtom(isShowInboxState)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
   const { y } = useScroll(scrollRef)
+  const { data, isLoading } = useSWR<User>(`/users/${chatState}`, async () => {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${chatState}`)
+    return res.json()
+  })
 
   const scrollToBottom = (): void => {
     if (scrollRef.current) {
@@ -28,6 +38,61 @@ const ChatDetail = () => {
       })
     }
   }
+
+  const chats = useMemo<ChatMessageProps[]>(() => {
+    return [
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
+      {
+        colorScheme: 'purple',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+      },
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
+      {
+        colorScheme: 'purple',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+      },
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
+      {
+        colorScheme: 'purple',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+      },
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
+      {
+        colorScheme: 'purple',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+      },
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
+    ]
+  }, [])
 
   // make user scroll to bottom when user is first time open chat detail before page is loaded
   useEffect(() => {
@@ -46,8 +111,15 @@ const ChatDetail = () => {
               <ArrowBack aria-label="Back icon" />
             </button>
             <div className="ml-4 flex flex-col">
-              <span className="text-lg font-bold text-blue-600">John Doe</span>
-              <span className="text-sm text-gray-800">Online</span>
+              <span
+                className={clsxm(
+                  'text-lg font-bold text-blue-600',
+                  isLoading ? 'h-7 w-44 animate-pulse bg-gray-200 p-1' : ''
+                )}
+              >
+                {!isLoading && groupName(data.address.suite, data.address.street)}
+              </span>
+              <span className="text-sm text-gray-800">3 Participants</span>
             </div>
           </div>
 
@@ -64,50 +136,21 @@ const ChatDetail = () => {
       </div>
 
       <div className="custom_scroll flex max-h-[737px] w-full flex-col gap-4 overflow-y-auto px-5 py-4" ref={scrollRef}>
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
-
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
-        <ChatMessage
-          sender="Yusuf"
-          colorScheme="yellow"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
+        {chats.slice(0, 7).map(chat => (
+          <ChatMessage key={chat.createdAt.getTime()} {...chat} />
+        ))}
         <DateDivider />
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
+        {chats.slice(7, 14).map(chat => (
+          <ChatMessage key={chat.createdAt.getTime()} {...chat} />
+        ))}
         <NewMessageDivider />
-        <ChatMessage
-          colorScheme="purple"
-          content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor quia illum aperiam optio unde perferendis praesentium impedit fugiat sequi explicabo."
-          createdAt={new Date()}
-        />
+
+        <ChatMessage {...chats[0]} />
       </div>
 
       <div className="relative flex w-full flex-col items-center">
         <Transition
-          show={y < 100}
+          show={y < scrollRef?.current?.scrollHeight - 800}
           enter="transition duration-200 ease-out"
           enterFrom="transform translate-y-4 opacity-0"
           enterTo="transform translate-y-0 opacity-100"
