@@ -10,7 +10,7 @@ const Chat = (props: ChatType) => {
 
   return (
     <button
-      className="flex flex-col rounded-t border-b border-[#828282] px-2 pb-8 pt-4 outline-none transition duration-300 hover:bg-gray-100 focus:bg-gray-200"
+      className="flex flex-col rounded-t border-b border-gray-200 px-2 pb-8 pt-4 shadow-sm outline-none transition duration-300 hover:bg-gray-100 focus:bg-gray-200"
       onClick={() => setChatState(id)}
     >
       <div className="flex">

@@ -91,6 +91,12 @@ const ChatDetail = () => {
         createdAt: new Date(faker.datatype.datetime()),
         sender: faker.name.fullName(),
       },
+      {
+        colorScheme: 'yellow',
+        content: faker.random.words(faker.datatype.number({ min: 4, max: 32 })),
+        createdAt: new Date(faker.datatype.datetime()),
+        sender: faker.name.fullName(),
+      },
     ]
   }, [])
 
@@ -140,12 +146,12 @@ const ChatDetail = () => {
           <ChatMessage key={chat.createdAt.getTime()} {...chat} />
         ))}
         <DateDivider />
-        {chats.slice(7, 14).map(chat => (
+        {chats.slice(7, 8).map(chat => (
           <ChatMessage key={chat.createdAt.getTime()} {...chat} />
         ))}
         <NewMessageDivider />
 
-        <ChatMessage {...chats[0]} />
+        <ChatMessage {...chats[chats.length - 1]} />
       </div>
 
       <div className="relative flex w-full flex-col items-center">

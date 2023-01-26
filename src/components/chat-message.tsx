@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { usePopper } from 'react-popper'
 import clsxm from '../utils/clsxm'
 
-type ColorScheme = 'purple' | 'yellow' | 'green'
+type ColorScheme = 'purple' | 'yellow' | 'green' | 'white'
 
 export interface ChatMessageProps {
   content: string
@@ -25,6 +25,10 @@ const COLOR_SCHEME: Record<ColorScheme, { bg: string; text: string }> = {
     bg: 'bg-green-200',
     text: 'text-green-700',
   },
+  white: {
+    bg: 'bg-gray-200',
+    text: 'text-gray-700',
+  },
 }
 
 const ChatMessage = (props: ChatMessageProps) => {
@@ -37,7 +41,9 @@ const ChatMessage = (props: ChatMessageProps) => {
 
   return (
     <div className={clsxm('flex w-full flex-col gap-1', sender ? 'items-start' : 'items-end')}>
-      <span className={`font-medium ${COLOR_SCHEME[colorScheme].text}`}>{sender ?? 'You'}</span>
+      <span className={`font-medium ${colorScheme === 'white' ? 'text-blue-600' : COLOR_SCHEME[colorScheme].text}`}>
+        {sender ?? 'You'}
+      </span>
       <div className={`flex items-start gap-1 ${sender ? 'flex-row-reverse' : 'flex-row'}`}>
         <Popover className={`relative ${sender ? 'mr-auto' : 'ml-auto'}`}>
           <Popover.Button

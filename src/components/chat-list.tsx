@@ -12,6 +12,7 @@ import Chat from './chat'
 import ChatDetail from './chat-detail'
 import clsxm from '../utils/clsxm'
 import { isGroup } from '../utils/chats'
+import ChatCs from './chat-cs'
 
 const ChatList = () => {
   const chatState = useAtomValue(chatAtom)
@@ -30,13 +31,15 @@ const ChatList = () => {
         sender: v.username,
       },
       createdAt: faker.date.between('2022-01-01', '2023-01-31'),
-      isGroup: isGroup(v.id),
+      isGroup: true,
     }))
   }, [usersData])
 
   return (
     <div className="relative flex max-h-[737px] w-full flex-1 flex-col">
-      {chatState ? (
+      {chatState === '0' ? (
+        <ChatCs />
+      ) : chatState ? (
         <ChatDetail />
       ) : (
         <>
@@ -57,7 +60,18 @@ const ChatList = () => {
                 <span className="mt-2 text-lg font-medium text-gray-700">Loading Chats...</span>
               </div>
             ) : (
-              users?.map(v => <Chat key={v.id} {...v} />)
+              <>
+                <Chat
+                  createdAt={new Date()}
+                  id="0"
+                  isGroup={false}
+                  lastMessage={{ content: 'Yes' }}
+                  name="FastVisa Support"
+                />
+                {users?.map(v => (
+                  <Chat key={v.id} {...v} />
+                ))}
+              </>
             )}
 
             <p className={clsxm('mt-4 text-center text-gray-500', isLoading ? 'hidden' : 'block')}>No more data</p>
